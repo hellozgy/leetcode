@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.next = None
 
+'''
 class Solution(object):
     def reverseList(self, head):
         """
@@ -24,3 +25,17 @@ class Solution(object):
                 head.next = None            
             node = next
         return prenode
+'''
+# 递归
+class Solution(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if not head or not head.next:return head
+        next = head.next
+        head.next = None
+        tnode = self.reverseList(next)
+        next.next = head
+        return tnode
