@@ -32,6 +32,34 @@ class Solution:
                     root[l*len(rchild)+r].right = rchild[r]
             res.extend(root)
         return res
-            
+# 方案2
+'''
+class Solution(object):
+    def generateTrees(self, n):
+        """
+        :type n: int
+        :rtype: List[TreeNode]
+        """
+        if n==0:return []
+        tag = [[None for _ in range(n+1)] for _ in range(n+1)]
+        return self.build(1, n, tag)
+    def build(self, low, high, tag):
+        if high<low:return [None]
+        if low==high:return [TreeNode(low)]
+        if tag[low][high]:return tag[low][high]
+        res = []
+        for i in range(low, high+1):
+            left = self.build(low, i-1, tag)
+            right = self.build(i+1, high, tag)
+            for l in left:
+                for r in right:
+                    root = TreeNode(i)
+                    root.left = l
+                    root.right = r
+                    res.append(root)
+        tag[low][high]=res
+        return res
+
+'''
 so = Solution()
 print(len(so.generateTrees(0)))
