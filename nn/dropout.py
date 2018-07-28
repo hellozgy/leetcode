@@ -3,6 +3,7 @@ import numpy as np
 
 def dropout(src, p=0, training=False):
     assert 0<=p<=1
+    assert src.dim()>0
     if training:
         shape = src.shape
         print(shape)
