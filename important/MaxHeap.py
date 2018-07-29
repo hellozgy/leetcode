@@ -4,11 +4,18 @@ class MaxHeap:
         self.n = 0
         self.max_size = max_size
     
-    def insert(self, val):
-        pass
+    def push(self, val):
+        self.data.append(item)
+        self.n+=1
+        self.up(self.n)
        
     def pop(self):
-        pass
+        d = self.data[1]
+        self.data[1] = self.data[self.n]
+        self.data.pop()
+        self.n -= 1
+        self.down(1)
+        return d
     
     def swap(self, i, j):
         t = self.data[i]
@@ -31,6 +38,13 @@ class MaxHeap:
             else:
                 self.swap(index, right)
                 index= right
+    def up(self, index):
+        while index>1:
+            f = index//2
+            if self.data[f]<self.data[index]:
+                self.swap(f, index)
+                index = f
+            else:return
     
     def build(self, data, size):
         self.n = size
